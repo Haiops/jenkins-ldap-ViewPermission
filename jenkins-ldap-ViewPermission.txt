@@ -1,0 +1,16 @@
+ldap已安装，不再阐述
+
+jenkins 安装Role-based Authorization Strategy插件
+创建几个视图，用于测试权限，不同的部门有不同的模块，以单词的首字母
+基于ldap的用户做jenkins权限，首先你的jenkins添加的用户要存在于ldap内
+配置权限方式
+点击系统管理-Role-Based Strategy
+配置 Manage Roles
+添加 job_reader 给与最基本的权限，这个用户不配置，会导致没权限
+配置 Project roles
+项目对那些job有权限，可以配置正则，任意字符必须用.*表示，不能直接*（配置完要点下面的SAVE保存）
+配置 Assign Roles
+配置 authenticated 用户，否则提示没权限，这里暂时不配置超级用户 （配置完要点下面的SAVE保存）
+配置 Item roles
+赋予权限，以便显示哪些用户用户哪些视图 （配置完要点下面的SAVE保存）
+提示！ 默认安装 插件默认安装只看到 Anonymous ，没有 authenticated，这估计是个bug了。 需要自行创建 authenticated 不然配置正确也没权限。
